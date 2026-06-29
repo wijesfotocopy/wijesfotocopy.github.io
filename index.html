@@ -1,0 +1,719 @@
+<!--
+  ETALASE WIJES FOTOCOPY — desain modern (dark + bento + gradien CMYK)
+  ============================================================
+  CARA EDIT (gampang):
+  1. Ubah NAMA, NOMOR WA, ALAMAT, JAM BUKA di bagian CONFIG (paling bawah).
+  2. Ubah harga langsung di teks kartu layanan. Cari "Rp" lalu ganti angkanya.
+  3. Simpan, lalu buka file ini di HP atau laptop.
+  ============================================================
+-->
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wijes Fotocopy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0B0F;
+    --bg-grad-1:#101524;
+    --surface:#14161F;
+    --surface-2:#191C28;
+    --line:rgba(255,255,255,.09);
+    --line-2:rgba(255,255,255,.16);
+    --text:#F4F5F8;
+    --muted:#9499A6;
+    --cyan:#22D3EE;
+    --wa:#25D366;
+    --wa-dark:#1C9D4E;
+    --cmyk:linear-gradient(100deg,#26DAE6 0%,#7C73FF 36%,#F25C9A 68%,#FFC857 100%);
+    --display:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+    --maxw:1080px;
+    --r:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+  }
+  /* faint graph-paper grid — nod to printed paper */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:34px 34px;
+    mask-image:radial-gradient(circle at 50% 30%,#000 0%,transparent 75%);
+  }
+  /* ambient color glow */
+  .glow{position:fixed;z-index:0;border-radius:50%;filter:blur(90px);
+    opacity:.5;pointer-events:none}
+  .glow.a{width:520px;height:520px;top:-180px;left:-120px;
+    background:radial-gradient(circle,#1E6BFF66,transparent 70%);animation:drift 18s ease-in-out infinite}
+  .glow.b{width:460px;height:460px;top:-90px;right:-140px;
+    background:radial-gradient(circle,#F25C9A55,transparent 70%);animation:drift 22s ease-in-out infinite reverse}
+  @keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,40px)}}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;position:relative;z-index:1}
+
+  /* registration mark logo */
+  .regmark{width:24px;height:24px;flex:0 0 auto}
+  .regmark circle,.regmark line{stroke:var(--cyan);stroke-width:1.4;fill:none}
+
+  /* ---------- header ---------- */
+  header{position:sticky;top:0;z-index:50;
+    background:rgba(10,11,15,.6);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:12px;font-family:var(--display);
+    font-weight:700;font-size:1.6rem;letter-spacing:-.02em;white-space:nowrap}
+  .nav-cta{font-family:var(--mono);font-size:.78rem;font-weight:700;text-decoration:none;
+    color:#072c14;background:var(--wa);padding:9px 16px;border-radius:99px;
+    display:inline-flex;align-items:center;gap:7px;
+    transition:transform .2s ease,box-shadow .2s ease}
+  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 22px -8px var(--wa)}
+  .nav-cta svg{width:15px;height:15px;fill:#072c14}
+
+  /* ---------- hero ---------- */
+  .hero{padding:48px 0 50px}
+  .eyebrow{font-family:var(--mono);font-size:.74rem;font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:10px;
+    border:1px solid var(--line);padding:7px 14px;border-radius:99px;margin-bottom:26px}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--wa);
+    box-shadow:0 0 0 0 var(--wa);animation:pulse 2.2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.6)}70%{box-shadow:0 0 0 7px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+  .eyebrow.closed{color:var(--muted)}
+  .eyebrow.closed .dot{background:var(--muted);box-shadow:none;animation:none}
+  .hero h1{font-family:var(--display);font-weight:800;letter-spacing:-.035em;
+    font-size:clamp(2.7rem,8.5vw,5.4rem);line-height:.98;max-width:14ch}
+  .hero h1 .grad{background:var(--cmyk);-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent}
+  .hero p.lead{margin-top:26px;font-size:clamp(1.02rem,2.3vw,1.25rem);color:#C7CBD5;max-width:48ch}
+  .hero p.lead strong{color:#fff;font-weight:700}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:13px;margin-top:36px}
+  .btn{font-family:var(--mono);font-weight:700;font-size:.86rem;text-decoration:none;
+    padding:15px 24px;border-radius:99px;display:inline-flex;align-items:center;gap:9px;
+    transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+  .btn-wa{background:var(--wa);color:#072c14;box-shadow:0 10px 30px -10px var(--wa)}
+  .btn-wa:hover{transform:translateY(-2px);background:#2ee06f}
+  .btn-wa svg{width:18px;height:18px;fill:#072c14}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line-2)}
+  .btn-ghost:hover{transform:translateY(-2px);background:var(--surface-2)}
+  .chips{display:flex;flex-wrap:nowrap;gap:9px;margin-top:30px;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;white-space:nowrap}
+
+  /* ---------- tombol WA melayang ---------- */
+  .wa-fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:90;
+    height:46px;padding:0 16px 0 11px;border-radius:99px;background:var(--wa);text-decoration:none;
+    display:inline-flex;align-items:center;gap:7px;
+    box-shadow:0 8px 22px -6px rgba(31,168,85,.7);
+    transition:transform .2s ease}
+  .wa-fab svg{width:22px;height:22px;fill:#072c14;position:relative;z-index:1}
+  .wa-fab-label{font-family:var(--mono);font-weight:700;font-size:.82rem;color:#072c14;
+    position:relative;z-index:1}
+  .wa-fab:hover{transform:scale(1.05)}
+  .wa-fab::after{content:"";position:absolute;inset:0;border-radius:99px;
+    box-shadow:0 0 0 0 rgba(37,211,102,.55);animation:fabpulse 2.4s infinite}
+  @keyframes fabpulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}
+    70%{box-shadow:0 0 0 12px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+  .chip{font-family:var(--mono);font-size:.74rem;color:var(--muted);
+    background:var(--surface);border:1px solid var(--line);padding:8px 13px;border-radius:9px}
+
+  /* ---------- section ---------- */
+  .sec{padding:20px 0 16px}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
+    margin-bottom:20px;flex-wrap:wrap}
+  .sec-head h2{font-family:var(--display);font-weight:700;letter-spacing:-.025em;
+    font-size:clamp(1.7rem,4.5vw,2.5rem)}
+  .sec-head .note{color:var(--muted);font-size:.9rem;max-width:38ch}
+
+  /* ---------- bento grid ---------- */
+  .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+  .b-3{grid-column:span 3}
+  .b-2{grid-column:span 2}
+  .b-6{grid-column:span 6}
+  .card{position:relative;background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--r);padding:26px;overflow:hidden;
+    transition:transform .28s cubic-bezier(.2,.7,.3,1),border-color .28s ease,background .28s ease}
+  .card::after{content:"";position:absolute;inset:0;border-radius:var(--r);padding:1px;
+    background:var(--cmyk);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .28s ease;pointer-events:none}
+  .card:hover{transform:translateY(-5px);background:var(--surface-2)}
+  .card:hover::after{opacity:.9}
+  .card .ico{font-size:1.7rem;line-height:1;display:inline-flex;margin-bottom:16px;
+    width:50px;height:50px;align-items:center;justify-content:center;border-radius:13px;
+    background:var(--surface-2);border:1px solid var(--line)}
+  .card h3{font-family:var(--display);font-weight:700;font-size:1.22rem;letter-spacing:-.02em;margin-bottom:8px}
+  .card .desc{font-size:.92rem;color:var(--muted);margin-bottom:20px}
+  .price-list{list-style:none;display:flex;flex-direction:column;gap:11px;
+    border-top:1px dashed var(--line-2);padding-top:16px}
+  .price-list li{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+  .price-list .label{font-size:.92rem}
+  .price-list .val{font-family:var(--mono);font-weight:700;font-size:.95rem;color:var(--cyan);white-space:nowrap}
+  .price-list .val small{font-family:var(--body);font-weight:400;color:var(--muted);font-size:.78em}
+  .price-list .label .sub{display:block;font-family:var(--body);font-weight:400;font-size:.78rem;
+    color:var(--muted);margin-top:3px}
+  .tiers li{align-items:flex-start}
+  .tiers .val{margin-top:2px}
+  .tag{display:inline-block;font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.07em;
+    text-transform:uppercase;color:#072c14;background:var(--cyan);padding:2px 7px;border-radius:99px;
+    margin-left:7px;vertical-align:middle}
+  /* feature card big price */
+  .feature .big{font-family:var(--mono);font-weight:700;font-size:clamp(2rem,5vw,2.7rem);
+    letter-spacing:-.03em;background:var(--cmyk);-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;line-height:1}
+  .feature .big small{display:block;font-family:var(--body);-webkit-text-fill-color:var(--muted);
+    color:var(--muted);font-weight:400;font-size:.9rem;margin-top:8px;letter-spacing:0}
+
+  /* ---------- contact ---------- */
+  .contact{position:relative;margin-top:18px;border-radius:26px;overflow:hidden;
+    background:var(--surface);border:1px solid var(--line);padding:48px 42px}
+  .contact .bar{position:absolute;top:0;left:0;right:0;height:5px;background:var(--cmyk)}
+  .contact h2{font-family:var(--display);font-weight:800;letter-spacing:-.03em;
+    font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.02;max-width:16ch;margin-top:8px}
+  .store-status{display:inline-flex;align-items:center;gap:9px;margin-top:14px;
+    font-family:var(--mono);font-weight:700;font-size:.78rem;
+    padding:8px 14px;border-radius:99px;border:1px solid var(--line-2);color:var(--muted)}
+  .store-status .sdot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:0 0 auto}
+  .store-status.open{color:#34d399;border-color:rgba(52,211,153,.45);background:rgba(52,211,153,.08)}
+  .store-status.open .sdot{background:#25D366;box-shadow:0 0 0 0 rgba(37,211,102,.6);animation:pulse 2.2s infinite}
+  .store-status.closed{color:#e8a3a3;border-color:rgba(232,120,120,.35);background:rgba(232,120,120,.07)}
+  .store-status.closed .sdot{background:#e07a7a}
+  .contact p{color:var(--muted);margin-top:14px;max-width:44ch}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:36px}
+  .info-label{font-family:var(--mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:7px}
+  .info-val{font-size:1.02rem;line-height:1.5}
+  .info-val a{color:var(--cyan);text-decoration:none}
+  .maps-link{display:inline-flex;margin-top:9px;font-family:var(--mono);font-weight:700;
+    font-size:.78rem;color:var(--cyan);text-decoration:none;
+    border:1px solid var(--line-2);padding:7px 13px;border-radius:99px;
+    transition:background .2s ease,border-color .2s ease}
+  .maps-link:hover{background:var(--surface-2);border-color:var(--cyan)}
+  .map-wrap{position:relative;margin-top:28px;border-radius:18px;overflow:hidden;
+    border:1px solid var(--line);line-height:0}
+  .map-wrap iframe{width:100%;height:230px;border:0;display:block}
+  @media(min-width:720px){.map-wrap iframe{height:300px}}
+  .map-pill{position:absolute;right:12px;bottom:12px;z-index:2;
+    font-family:var(--mono);font-weight:700;font-size:.76rem;letter-spacing:.01em;
+    color:#072c14;background:var(--cyan);text-decoration:none;
+    padding:9px 14px;border-radius:99px;box-shadow:0 6px 18px -6px rgba(0,0,0,.5);
+    transition:transform .2s ease}
+  .map-pill:hover{transform:translateY(-2px)}
+  .map-hint{margin-top:13px;font-size:.86rem;color:var(--muted);text-align:center;line-height:1.5}
+  .contact .btn-wa{margin-top:34px}
+
+  /* ---------- footer ---------- */
+  footer{padding:46px 0 60px;text-align:center;color:var(--muted);font-size:.84rem}
+  footer .brand{justify-content:center;color:var(--text);margin-bottom:8px}
+
+  /* ---------- menu (semua harga tampil) ---------- */
+  .menu{max-width:660px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+  .menu-item{background:var(--surface);border:1px solid var(--line);border-radius:18px;
+    padding:20px 20px 8px}
+  .menu-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+  .menu-ico{width:46px;height:46px;flex:0 0 auto;border-radius:13px;background:var(--surface-2);
+    border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+  .menu-titles{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .menu-name{font-family:var(--display);font-weight:700;font-size:1.12rem;letter-spacing:-.015em;line-height:1.2}
+  .menu-note{font-family:var(--mono);font-weight:700;font-size:.74rem;color:var(--cyan)}
+  .menu-item .price-list{border-top:1px dashed var(--line-2);padding-top:14px;padding-bottom:12px}
+  .menu-cta{max-width:660px;margin:22px auto 0;display:flex;flex-direction:column;
+    align-items:center;gap:10px}
+  .menu-cta .hint{font-family:var(--mono);font-size:.78rem;color:var(--muted);text-align:center}
+  .menu-cta .btn-wa{width:100%;max-width:340px;justify-content:center}
+
+  /* ---------- kalkulator ---------- */
+  .calc{max-width:520px;margin:0 auto;background:var(--surface);border:1px solid var(--line);
+    border-radius:22px;padding:26px}
+  .calc-field{margin-bottom:18px}
+  .calc-field>label{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .select-wrap{position:relative}
+  .select-wrap::after{content:"";position:absolute;right:18px;top:46%;width:8px;height:8px;
+    border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
+    transform:translateY(-50%) rotate(45deg);pointer-events:none}
+  .calc select,.calc input{width:100%;font:inherit;color:var(--text);background:var(--surface-2);
+    border:1px solid var(--line-2);border-radius:12px;padding:13px 14px;
+    -webkit-appearance:none;appearance:none}
+  .calc select{padding-right:38px;cursor:pointer}
+  .calc select:focus,.calc input:focus{outline:none;border-color:var(--cyan)}
+  .qty{display:flex;align-items:center;gap:10px}
+  .qty button{width:50px;height:50px;flex:0 0 auto;border-radius:12px;border:1px solid var(--line-2);
+    background:var(--surface-2);color:var(--text);font-size:1.5rem;line-height:1;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;
+    transition:background .2s ease}
+  .qty button:hover{background:var(--line-2)}
+  .qty input{text-align:center;font-family:var(--mono);font-weight:700;font-size:1.05rem}
+  .qty input::-webkit-outer-spin-button,.qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .qty input[type=number]{-moz-appearance:textfield}
+  .calc-total{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px;
+    padding:18px 20px;background:var(--surface-2);border:1px solid var(--line);border-radius:14px}
+  .calc-total-label{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+  .calc-total-val{font-family:var(--mono);font-weight:700;font-size:clamp(1.4rem,5.5vw,1.95rem);
+    line-height:1;color:var(--text);text-align:right}
+  .calc-note{font-size:.84rem;color:var(--cyan);margin-top:12px}
+  .calc-note:empty{display:none}
+  .calc .btn-wa{margin-top:18px;width:100%;justify-content:center}
+  .calc-disclaimer{font-size:.74rem;color:var(--muted);text-align:center;margin-top:14px}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:880px){
+    .bento{grid-template-columns:repeat(2,1fr)}
+    .b-3,.b-2,.b-6{grid-column:span 1}
+    .contact{padding:38px 24px}
+    .contact-grid{grid-template-columns:1fr}
+    .nav-cta span{display:none}
+    .hero{padding:22px 0 14px}
+    .eyebrow{margin-bottom:18px}
+    .chips{margin-top:22px}
+    .hero-actions{margin-top:26px}
+    .brand{font-size:1.5rem}
+  }
+  @media(max-width:560px){.bento{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto!important}
+    .reveal{opacity:1;transform:none;transition:none}
+    .glow{animation:none}.dot{animation:none}
+    .wa-fab::after{animation:none}
+  }
+</style>
+</head>
+<body>
+<div class="glow a"></div>
+<div class="glow b"></div>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <svg class="regmark" viewBox="0 0 26 26" aria-hidden="true">
+        <circle cx="13" cy="13" r="7.5"/><circle cx="13" cy="13" r="2.4"/>
+        <line x1="13" y1="0" x2="13" y2="26"/><line x1="0" y1="13" x2="26" y2="13"/>
+      </svg>
+      <span id="brand-name">Wijes Fotocopy</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow reveal" id="heroStatus"><span class="dot"></span> <span id="heroStatusText">Buka &amp; siap melayani</span></span>
+    <h1 class="reveal">Mepet deadline?<br><span class="grad">Tenang, ada Wijes.</span></h1>
+    <p class="lead reveal">Pengetikan, fotocopy, cetak foto, scan PDF, sampai jilid. Dikerjakan
+       <strong>cepat dan rapi</strong>. Kirim filemu lewat WhatsApp, atau langsung mampir ke toko.</p>
+    <div class="chips reveal">
+      <span class="chip">⚡ Cepat</span>
+      <span class="chip">💯 Rapi</span>
+      <span class="chip">🏷️ Harga jelas</span>
+      <span class="chip">📄 Kirim file via WA</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="layanan">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Layanan &amp; harga</h2>
+      <p class="note">Pesanan banyak biasanya bisa nego. Cetak foto &amp; jilid menyesuaikan
+         ukuran/jenis — tanya dulu via WA.</p>
+    </div>
+
+    <div class="menu" id="menu"></div>
+  </div>
+</section>
+
+<section class="sec" id="kalkulator">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Kalkulator pesanan</h2>
+      <p class="note">Hitung perkiraan biaya dulu, lalu pesan langsung lewat WhatsApp dengan rincian otomatis.</p>
+    </div>
+
+    <div class="calc reveal">
+      <div class="calc-field">
+        <label for="calcService">Layanan</label>
+        <div class="select-wrap"><select id="calcService"></select></div>
+      </div>
+      <div class="calc-field">
+        <label for="calcVariant">Jenis</label>
+        <div class="select-wrap"><select id="calcVariant"></select></div>
+      </div>
+      <div class="calc-field">
+        <label for="calcQty">Jumlah (<span id="calcUnit">lembar</span>)</label>
+        <div class="qty">
+          <button type="button" id="qtyMinus" aria-label="Kurangi jumlah">−</button>
+          <input id="calcQty" type="number" min="1" value="1" inputmode="numeric">
+          <button type="button" id="qtyPlus" aria-label="Tambah jumlah">+</button>
+        </div>
+      </div>
+      <div class="calc-total">
+        <span class="calc-total-label">Perkiraan total</span>
+        <span class="calc-total-val" id="calcTotal">Rp 0</span>
+      </div>
+      <p class="calc-note" id="calcNote"></p>
+      <a class="btn btn-wa" id="calcWa" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.06 24l1.7-6.2A11.9 11.9 0 1112 24a11.9 11.9 0 01-5.9-1.6L.06 24zM6.6 20.1l.4.2a9.9 9.9 0 005 1.4 9.9 9.9 0 10-9.9-9.9 9.9 9.9 0 001.5 5.3l.3.4-1 3.6 3.7-1zM18 14.4c-.1-.2-.4-.3-.9-.5s-2.6-1.3-3-1.4-.6-.2-.9.2-1 1.3-1.2 1.5-.4.3-.8.1a8 8 0 01-2.4-1.5 9 9 0 01-1.6-2c-.2-.4 0-.5.2-.7l.5-.6.4-.6a.7.7 0 000-.6c0-.2-.9-2.1-1.2-2.9s-.6-.6-.8-.6h-.8a1.5 1.5 0 00-1 .5A4.2 4.2 0 004 8.5c0 2.5 1.8 4.9 2 5.2s3.5 5.4 8.5 7.5a8.9 8.9 0 003 .6 4 4 0 002.5-1.8 3.2 3.2 0 00.2-1.8z"/></svg>
+        Pesan via WhatsApp
+      </a>
+      <p class="calc-disclaimer">Hasil ini perkiraan. Harga pasti dikonfirmasi saat pemesanan.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="lokasi">
+  <div class="wrap">
+    <div class="contact reveal">
+      <div class="bar"></div>
+      <svg class="regmark" viewBox="0 0 26 26" aria-hidden="true" style="width:30px;height:30px">
+        <circle cx="13" cy="13" r="7.5"/><circle cx="13" cy="13" r="2.4"/>
+        <line x1="13" y1="0" x2="13" y2="26"/><line x1="0" y1="13" x2="26" y2="13"/>
+      </svg>
+      <h2>Mampir, atau kirim file dari rumah.</h2>
+      <span class="store-status" id="storeStatus"><span class="sdot"></span><span id="storeStatusText">Memeriksa jam…</span></span>
+      <p>Datang langsung ke toko, atau cukup chat WhatsApp — tinggal ambil saat sudah jadi.</p>
+
+      <div class="map-wrap">
+        <iframe id="map-embed" title="Peta lokasi WIJES" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a class="map-pill" id="map-link" href="#" target="_blank" rel="noopener">📍 Buka di Google Maps</a>
+      </div>
+      <p class="map-hint">👆 Ketuk peta atau tombol di atas untuk melihat lokasi &amp; arah menuju toko di Google Maps.</p>
+
+      <div class="contact-grid">
+        <div class="info-block">
+          <div class="info-label">Alamat toko</div>
+          <div class="info-val" id="alamat">Jl. Kusuma Bangsa, Nabire, Papua Tengah</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Jam buka</div>
+          <div class="info-val" id="jam">Senin–Sabtu, 08.00–20.00</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">WhatsApp</div>
+          <div class="info-val"><a id="wa-text" href="#" target="_blank" rel="noopener">0823-2942-4700</a></div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Cara pesan</div>
+          <div class="info-val">Chat WA → kirim file &amp; jumlah → ambil saat jadi.</div>
+        </div>
+      </div>
+
+      <a class="btn btn-wa" id="wa-contact" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.06 24l1.7-6.2A11.9 11.9 0 1112 24a11.9 11.9 0 01-5.9-1.6L.06 24zM6.6 20.1l.4.2a9.9 9.9 0 005 1.4 9.9 9.9 0 10-9.9-9.9 9.9 9.9 0 001.5 5.3l.3.4-1 3.6 3.7-1zM18 14.4c-.1-.2-.4-.3-.9-.5s-2.6-1.3-3-1.4-.6-.2-.9.2-1 1.3-1.2 1.5-.4.3-.8.1a8 8 0 01-2.4-1.5 9 9 0 01-1.6-2c-.2-.4 0-.5.2-.7l.5-.6.4-.6a.7.7 0 000-.6c0-.2-.9-2.1-1.2-2.9s-.6-.6-.8-.6h-.8a1.5 1.5 0 00-1 .5A4.2 4.2 0 004 8.5c0 2.5 1.8 4.9 2 5.2s3.5 5.4 8.5 7.5a8.9 8.9 0 003 .6 4 4 0 002.5-1.8 3.2 3.2 0 00.2-1.8z"/></svg>
+        Chat WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TOMBOL WA MELAYANG -->
+<a class="wa-fab" id="wa-fab" href="#" target="_blank" rel="noopener" aria-label="Chat WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.06 24l1.7-6.2A11.9 11.9 0 1112 24a11.9 11.9 0 01-5.9-1.6L.06 24zM6.6 20.1l.4.2a9.9 9.9 0 005 1.4 9.9 9.9 0 10-9.9-9.9 9.9 9.9 0 001.5 5.3l.3.4-1 3.6 3.7-1zM18 14.4c-.1-.2-.4-.3-.9-.5s-2.6-1.3-3-1.4-.6-.2-.9.2-1 1.3-1.2 1.5-.4.3-.8.1a8 8 0 01-2.4-1.5 9 9 0 01-1.6-2c-.2-.4 0-.5.2-.7l.5-.6.4-.6a.7.7 0 000-.6c0-.2-.9-2.1-1.2-2.9s-.6-.6-.8-.6h-.8a1.5 1.5 0 00-1 .5A4.2 4.2 0 004 8.5c0 2.5 1.8 4.9 2 5.2s3.5 5.4 8.5 7.5a8.9 8.9 0 003 .6 4 4 0 002.5-1.8 3.2 3.2 0 00.2-1.8z"/></svg>
+  <span class="wa-fab-label">Chat</span>
+</a>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">
+      <svg class="regmark" viewBox="0 0 26 26" aria-hidden="true">
+        <circle cx="13" cy="13" r="7.5"/><circle cx="13" cy="13" r="2.4"/>
+        <line x1="13" y1="0" x2="13" y2="26"/><line x1="0" y1="13" x2="26" y2="13"/>
+      </svg>
+      <span id="footer-name">Wijes Fotocopy</span>
+    </div>
+    <div>Ketik · Fotocopy · Scan · Cetak · Jilid</div>
+  </div>
+</footer>
+
+<script>
+  /* =========================================================
+     CONFIG — UBAH BAGIAN INI SAJA
+     ========================================================= */
+  const CONFIG = {
+    namaUsaha: "Wijes Fotocopy",                            // nama toko
+    nomorWA:   "6282329424700",                             // format 62... tanpa "+" / spasi / 0 depan
+    alamat:    "Jl. Kusuma Bangsa, Nabire 98816, Papua Tengah",   // alamat toko
+    jamBuka:   "Senin–Sabtu, 08.00–20.00 WIT",              // jam buka — sesuaikan jam tokomu
+    // Jam operasi untuk status Buka/Tutup otomatis. 0=Minggu,1=Senin,...,6=Sabtu.
+    // Tulis ["08:00","20:00"] untuk jam buka, atau null kalau hari itu tutup.
+    jamOperasi: {0:null, 1:["08:00","20:00"], 2:["08:00","20:00"], 3:["08:00","20:00"],
+                 4:["08:00","20:00"], 5:["08:00","20:00"], 6:["08:00","20:00"]},
+    zonaUtc:   9,                                            // Papua Tengah (WIT) = UTC+9
+    linkMaps:  "https://www.google.com/maps/place/WIJES+(ATK,+Fotocopy+%26+Print)/@-3.3593869,135.5056581,68m/data=!3m1!1e3!4m12!1m5!8m4!1e2!2s113507317498816377214!3m1!1e1!3m5!1s0x681fa24087ee32d1:0xcffdd059cc28371f!8m2!3d-3.3593039!4d135.5057144!16s%2Fg%2F11gfdv872l", // link Google Maps toko
+    petaEmbed: "https://maps.google.com/maps?q=-3.3593039,135.5057144&z=17&hl=id&output=embed", // peta yang tampil di halaman
+    pesanAwal: "Halo Wijes Fotocopy 👋 Saya mau pesan jasa, boleh dibantu ya? Detailnya: " // teks awal saat buka WA
+  };
+  /* ========================================================= */
+
+  const waLink = "https://wa.me/" + CONFIG.nomorWA + "?text=" + encodeURIComponent(CONFIG.pesanAwal);
+  document.getElementById("brand-name").textContent  = CONFIG.namaUsaha;
+  document.getElementById("footer-name").textContent = CONFIG.namaUsaha;
+  document.getElementById("alamat").textContent      = CONFIG.alamat;
+  document.getElementById("jam").textContent         = CONFIG.jamBuka;
+  const mapEmbed = document.getElementById("map-embed");
+  if (mapEmbed) mapEmbed.src = CONFIG.petaEmbed;
+  const mapLink = document.getElementById("map-link");
+  if (mapLink) mapLink.href = CONFIG.linkMaps;
+  document.title = CONFIG.namaUsaha + " — Jasa Ketik, Fotocopy, Scan, Cetak & Jilid";
+
+  const waPretty = ("0" + CONFIG.nomorWA.replace(/^62/, ""))
+                   .replace(/(\d{4})(\d{4})(\d+)/, "$1-$2-$3");
+  const waTextEl = document.getElementById("wa-text");
+  if (waTextEl) waTextEl.textContent = waPretty;
+
+  ["wa-contact","wa-text","wa-fab"].forEach(id=>{
+    const el = document.getElementById(id);
+    if (el) el.href = waLink;
+  });
+
+  /* =========================================================
+     DAFTAR LAYANAN — UBAH HARGA / TEKS DI SINI
+     Tiap layanan: ikon, nama, teaser (tampil di kartu),
+     desc (penjelasan di pop-up), dan harga (daftar baris).
+     Tiap baris harga: label, sub (opsional), tag (opsional),
+     nilai, satuan (opsional).
+     ========================================================= */
+  const LAYANAN = [
+    { ikon:"⌨️", nama:"Pengetikan Word", teaser:"Mulai Rp 10.000",
+      desc:"Makalah, skripsi, surat, laporan — diketik rapi di Microsoft Word. <strong>Harga sudah termasuk hasil print.</strong>",
+      harga:[
+        {label:"Reguler", sub:"Selesai 2–3 hari", nilai:"Rp 10.000", satuan:"/ lembar"},
+        {label:"Cepat", tag:"populer", sub:"Ambil hari itu juga", nilai:"Rp 20.000", satuan:"/ lembar"},
+        {label:"Kilat", sub:"Ditunggu, jadi beberapa jam", nilai:"Rp 35.000", satuan:"/ lembar"}
+      ]},
+    { ikon:"📊", nama:"Pengetikan Excel", teaser:"Mulai Rp 15.000",
+      desc:"Tabel, data, laporan keuangan, daftar — dirapikan di Microsoft Excel. <strong>Harga sudah termasuk hasil print.</strong>",
+      harga:[
+        {label:"Reguler", sub:"Selesai 2–3 hari", nilai:"Rp 15.000", satuan:"/ lembar"},
+        {label:"Cepat", tag:"populer", sub:"Ambil hari itu juga", nilai:"Rp 25.000", satuan:"/ lembar"},
+        {label:"Kilat", sub:"Ditunggu, jadi beberapa jam", nilai:"Rp 40.000", satuan:"/ lembar"}
+      ]},
+    { ikon:"📽️", nama:"Pengetikan PowerPoint", teaser:"Mulai Rp 10.000",
+      desc:"Slide presentasi, materi, atau profil — dirapikan di Microsoft PowerPoint. <strong>Harga sudah termasuk hasil print.</strong>",
+      harga:[
+        {label:"Reguler", sub:"Selesai 2–3 hari", nilai:"Rp 10.000", satuan:"/ lembar"},
+        {label:"Cepat", tag:"populer", sub:"Ambil hari itu juga", nilai:"Rp 20.000", satuan:"/ lembar"},
+        {label:"Kilat", sub:"Ditunggu, jadi beberapa jam", nilai:"Rp 35.000", satuan:"/ lembar"}
+      ]},
+    { ikon:"🖨️", nama:"Fotocopy", teaser:"Mulai Rp 500",
+      desc:"Cepat dan jelas. Bisa satu sisi atau bolak-balik biar hemat kertas.",
+      harga:[
+        {label:"1 sisi", nilai:"Rp 500", satuan:"/ lembar"},
+        {label:"Bolak-balik", nilai:"Rp 1.000", satuan:"/ lembar"}
+      ]},
+    { ikon:"📄", nama:"Print", teaser:"Mulai Rp 2.000",
+      desc:"Tinggal kirim file PDF / Word lewat WhatsApp, kami cetakkan.",
+      harga:[
+        {label:"Hitam putih", nilai:"Rp 2.000", satuan:"/ lembar"},
+        {label:"Warna (logo/teks)", nilai:"Rp 3.000", satuan:"/ lembar"},
+        {label:"Warna full (gambar penuh)", sub:"Tergantung tingkat warna", nilai:"Rp 5.000–10.000", satuan:"/ lembar"}
+      ]},
+    { ikon:"📑", nama:"Scan & olah PDF", teaser:"Mulai Rp 5.000",
+      desc:"Scan dokumen jadi PDF, plus kompres ukuran &amp; convert PDF ke Word atau JPG.",
+      harga:[
+        {label:"Scan ke PDF", sub:"Dokumen, KTP, ijazah", nilai:"Rp 5.000", satuan:"/ lembar"},
+        {label:"Kompres PDF", sub:"Perkecil ukuran file", nilai:"Chat WA"},
+        {label:"Convert PDF ke Word", nilai:"Chat WA"},
+        {label:"Convert PDF ke JPG", nilai:"Chat WA"}
+      ]},
+    { ikon:"🖼️", nama:"Cetak foto", teaser:"Mulai Rp 2.000",
+      desc:"Pas foto untuk berkas, lamaran, atau dokumen — hasil tajam &amp; rapi.",
+      harga:[
+        {label:"Ukuran 2×3", nilai:"Rp 2.000", satuan:"/ lembar"},
+        {label:"Ukuran 3×4", nilai:"Rp 3.000", satuan:"/ lembar"},
+        {label:"Ukuran 4×6", nilai:"Rp 5.000", satuan:"/ lembar"}
+      ]},
+    { ikon:"📚", nama:"Jilid", teaser:"Mulai Rp 5.000",
+      desc:"Jilid lakban tipis — rapi &amp; kuat untuk skripsi, proposal, laporan. Harga menyesuaikan tebal dokumen.",
+      harga:[
+        {label:"Sampai 50 lembar", nilai:"Rp 5.000", satuan:"/ buku"},
+        {label:"51–100 lembar", nilai:"Rp 7.000", satuan:"/ buku"},
+        {label:"101–150 lembar", nilai:"Rp 10.000", satuan:"/ buku"},
+        {label:"Di atas 150 lembar", nilai:"Rp 15.000", satuan:"/ buku"}
+      ]}
+  ];
+  /* ========================================================= */
+
+  // --- render menu (semua harga tampil) ---
+  function rowHTML(r){
+    const sub = r.sub ? '<span class="sub">'+r.sub+'</span>' : '';
+    const tag = r.tag ? ' <span class="tag">'+r.tag+'</span>' : '';
+    const sat = r.satuan ? ' <small>'+r.satuan+'</small>' : '';
+    return '<li><span class="label">'+r.label+tag+sub+'</span>'+
+           '<span class="val">'+r.nilai+sat+'</span></li>';
+  }
+  function noteOf(s){
+    // ambil catatan "termasuk print" dari desc jika ada
+    if(/termasuk print/i.test(s.desc)) return "harga sudah termasuk print";
+    return "";
+  }
+
+  const menuEl = document.getElementById("menu");
+  LAYANAN.forEach((s)=>{
+    const note = noteOf(s);
+    const item = document.createElement("div");
+    item.className = "menu-item reveal";
+    item.innerHTML =
+      '<div class="menu-head">'+
+        '<span class="menu-ico">'+s.ikon+'</span>'+
+        '<div class="menu-titles"><span class="menu-name">'+s.nama+'</span>'+
+        (note ? '<span class="menu-note">'+note+'</span>' : '')+'</div>'+
+      '</div>'+
+      '<ul class="price-list tiers">'+s.harga.map(rowHTML).join("")+'</ul>';
+    menuEl.appendChild(item);
+  });
+
+  // --- kalkulator pesanan ---
+  const elService = document.getElementById("calcService");
+  const elVariant = document.getElementById("calcVariant");
+  const elQty     = document.getElementById("calcQty");
+  const elUnit    = document.getElementById("calcUnit");
+  const elTotal   = document.getElementById("calcTotal");
+  const elNote    = document.getElementById("calcNote");
+  const elWa      = document.getElementById("calcWa");
+
+  const rupiah = n => "Rp " + n.toLocaleString("id-ID");
+  function parseHarga(nilai){
+    if(!/\d/.test(nilai)) return null;               // "Chat WA"
+    const nums = (nilai.match(/[\d.]+/g)||[]).map(x=>parseInt(x.replace(/\./g,""),10));
+    return nums.length>=2 ? {min:nums[0], max:nums[1]} : {min:nums[0], max:nums[0]};
+  }
+  function unitOf(s){
+    const sat = (s.harga[0].satuan||"").replace("/","").trim();
+    return sat || "buku";
+  }
+
+  // isi pilihan layanan
+  LAYANAN.forEach((s,i)=>{
+    const o = document.createElement("option");
+    o.value = i; o.textContent = s.ikon + "  " + s.nama;
+    elService.appendChild(o);
+  });
+  function fillVariants(){
+    const s = LAYANAN[+elService.value];
+    elVariant.innerHTML = "";
+    s.harga.forEach((r,j)=>{
+      const o = document.createElement("option");
+      o.value = j; o.textContent = r.label + " — " + r.nilai;
+      elVariant.appendChild(o);
+    });
+    elUnit.textContent = unitOf(s);
+    hitung();
+  }
+  function hitung(){
+    const s = LAYANAN[+elService.value];
+    const r = s.harga[+elVariant.value];
+    let qty = parseInt(elQty.value, 10); if(!qty || qty<1){ qty=1; }
+    const h = parseHarga(r.nilai);
+    const unit = unitOf(s);
+    let totalText, rincian, note = "";
+
+    if(!h){ // Chat WA
+      elTotal.textContent = "Chat WA";
+      note = "Harga " + s.nama.toLowerCase() + " menyesuaikan jenis — chat WA untuk info pasti.";
+      rincian = s.nama + " (" + r.label + ") " + qty + " " + unit + " — minta info harga";
+    } else if(h.max > h.min){ // rentang
+      const lo = h.min*qty, hi = h.max*qty;
+      totalText = rupiah(lo) + "–" + rupiah(hi);
+      elTotal.textContent = totalText;
+      note = (r.sub ? r.sub + ". " : "") + "Total perkiraan, tergantung hasil akhir.";
+      rincian = s.nama + " (" + r.label + ") " + qty + " " + unit + " = " + totalText + " (perkiraan)";
+    } else { // pasti
+      const total = h.min*qty;
+      totalText = rupiah(total);
+      elTotal.textContent = totalText;
+      rincian = s.nama + " (" + r.label + ") " + qty + " " + unit + " = " + totalText;
+    }
+    elNote.textContent = note;
+    elWa.href = "https://wa.me/" + CONFIG.nomorWA + "?text=" +
+                encodeURIComponent(CONFIG.pesanAwal + rincian);
+  }
+  elService.addEventListener("change", fillVariants);
+  elVariant.addEventListener("change", hitung);
+  elQty.addEventListener("input", hitung);
+  document.getElementById("qtyPlus").addEventListener("click", ()=>{
+    elQty.value = (parseInt(elQty.value,10)||0) + 1; hitung();
+  });
+  document.getElementById("qtyMinus").addEventListener("click", ()=>{
+    elQty.value = Math.max(1, (parseInt(elQty.value,10)||1) - 1); hitung();
+  });
+  fillVariants(); // inisialisasi
+
+  // --- status buka/tutup otomatis (hero + lokasi) ---
+  (function(){
+    const elC = document.getElementById("storeStatus");
+    const txtC = document.getElementById("storeStatusText");
+    const elH = document.getElementById("heroStatus");
+    const txtH = document.getElementById("heroStatusText");
+    const HARI = ["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
+    const toMin = s => { const [h,m] = s.split(":").map(Number); return h*60+m; };
+    const fmt = s => s.replace(":",".");
+    function lagi(menit){
+      if(menit < 60) return menit + " menit lagi";
+      const jam = Math.round(menit/60);
+      return jam + " jam lagi";
+    }
+    function nowWIT(){
+      const n = new Date();
+      return new Date(n.getTime() + n.getTimezoneOffset()*60000 + (CONFIG.zonaUtc||9)*3600000);
+    }
+    function nextOpen(d){
+      for(let i=1;i<=7;i++){
+        const day = (d.getDay()+i)%7;
+        const j = CONFIG.jamOperasi[day];
+        if(j) return (i===1?"besok":HARI[day]) + " " + fmt(j[0]) + " WIT";
+      }
+      return "";
+    }
+    function update(){
+      const d = nowWIT();
+      const mins = d.getHours()*60 + d.getMinutes();
+      const j = CONFIG.jamOperasi[d.getDay()];
+      let open=false, cLabel="", hLabel="";
+      if(j){
+        const o = toMin(j[0]), c = toMin(j[1]);
+        if(mins >= o && mins < c){
+          open = true;
+          cLabel = "Buka sekarang · tutup " + fmt(j[1]) + " WIT";
+          hLabel = "Buka · tutup " + lagi(c - mins);
+        } else if(mins < o){
+          cLabel = "Tutup · buka " + fmt(j[0]) + " WIT";
+          hLabel = "Tutup · buka " + lagi(o - mins);
+        } else {
+          const nx = nextOpen(d);
+          cLabel = "Tutup" + (nx ? " · buka " + nx : "");
+          hLabel = "Tutup · buka " + nx;
+        }
+      } else {
+        const nx = nextOpen(d);
+        cLabel = "Tutup hari ini" + (nx ? " · buka " + nx : "");
+        hLabel = "Tutup · buka " + nx;
+      }
+      if(elC){ elC.classList.toggle("open",open); elC.classList.toggle("closed",!open); txtC.textContent = cLabel; }
+      if(elH){ elH.classList.toggle("closed",!open); txtH.textContent = hLabel; }
+    }
+    update();
+    setInterval(update, 60000);
+  })();
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} });
+  }, {threshold:.12});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
